@@ -1,4 +1,4 @@
-# di-software 27 — Flask Liquid Glass
+# di-software 27
 
 Kullanıcının yüklediği **di-software 27.zip** sürümünün 3 yazılımlı yapısı ve Liquid Glass arayüzü korunmuştur. Kaldırılan projeler geri eklenmedi.
 

@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "atoai-27",
+    "name": "AtoAI 27",
+    "category": "Yapay Zekâ",
+    "description": "Çoklu model seçenekleri ve yerel yapay zekâ deneyimi hedefleyen masaüstü asistanı.",
+    "icon": "✦",
+    "platform": "Windows",
+    "status": "Geliştirildi",
+    "releases": [
+      {
+        "id": "surum-27",
+        "version": "27",
+        "url": "https://github.com/ilhandilekci38/di-software/releases/download/27/di-ato.27.exe",
+        "notes": "AtoAI 27 Windows EXE sürümü.",
+        "created_at": ""
+      }
+    ],
+    "visible": true,
+    "cover": ""
+  },
+  {
+    "slug": "pydi-ide",
+    "name": "pydi-ide",
+    "category": "Geliştirici",
+    "description": "Python geliştirme amacı ile kodlanmış bir kodlama aracıdır. Webview teknolojisi ile çalışmaktadır.",
+    "icon": "⌘",
+    "platform": "Windows",
+    "status": "Geliştirildi",
+    "releases": [
+      {
+        "id": "surum-27",
+        "version": "27",
+        "url": "https://github.com/ilhandilekci38/di-software/releases/download/27/pydi-ide.exe",
+        "notes": "pydi-ide Windows EXE sürümü.",
+        "created_at": ""
+      }
+    ],
+    "visible": true,
+    "cover": ""
+  },
+  {
+    "slug": "di-browser",
+    "name": "di-browser",
+    "category": "İnternet",
+    "description": "İnternet erişimi sağlayabilmenize odaklı şeffaf ve şık arayüzlü internet tarayıcısı.",
+    "icon": "🌐︎",
+    "platform": "Windows",
+    "status": "Geliştirildi",
+    "releases": [
+      {
+        "id": "surum-27",
+        "version": "27",
+        "url": "https://github.com/ilhandilekci38/di-software/releases/download/27/di-browser.exe",
+        "notes": "di-browser Windows EXE sürümü.",
+        "created_at": ""
+      }
+    ],
+    "visible": true,
+    "cover": ""
+  }
+]

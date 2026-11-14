@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#a0c5f4">
+  <meta name="description" content="Dilekçiler Software — bağımsız yazılım stüdyosu ve kapalı kaynak uygulama indirme merkezi.">
+  <title>Dilekçiler Software · Liquid Glass Studio</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/logo.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</head>
+<body data-theme="lagoon">
+  <div class="scenery" aria-hidden="true"><div class="mist mist-one"></div><div class="mist mist-two"></div><div class="light-ray"></div></div>
+  <div class="shell">
+    <nav class="rail liquid-glass" aria-label="Ana menü">
+      <button class="rail-brand liquid-button" id="go-home" type="button" title="Ana sayfa" aria-label="Ana sayfa"><span>d<span class="brand-dot">●</span></span></button>
+      <div class="rail-center">
+        <button class="rail-icon liquid-button selected" id="rail-catalog" type="button" aria-label="Yazılımlar" title="Yazılımlar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+        </button>
+        <button class="rail-icon liquid-button" id="rail-studio" type="button" aria-label="Stüdyo bilgileri" title="Stüdyo bilgileri">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M4 12h16M12 3c3 4 3 14 0 18M12 3c-3 4-3 14 0 18"/></svg>
+        </button>
+        <button class="rail-icon liquid-button" id="rail-search" type="button" aria-label="Arama" title="Proje ara">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4 4"/></svg>
+        </button>
+      </div>
+      <button class="rail-icon liquid-button rail-theme" id="theme-toggle" type="button" aria-label="Renkli görünümü değiştir" title="Görünümü değiştir">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20M4.5 4.5l15 15M19.5 4.5l-15 15"/></svg>
+      </button>
+    </nav>
+
+    <div class="content-layout">
+      <header class="masthead liquid-glass">
+        <div class="mast-left"><span class="identity liquid-button" aria-hidden="true">d.</span><div><strong>dilekçiler</strong><span>SOFTWARE</span></div></div>
+        <div class="mast-center"><span class="online-pulse"></span> Bağımsız yazılım stüdyosu</div>
+        <div class="mast-right"><span class="edition">LIQUID EDITION <b>01</b></span><button class="avatar liquid-button" type="button" id="about-shortcut" title="Stüdyo hakkında" aria-label="Stüdyo hakkında">D</button></div>
+      </header>
+
+      <section class="hero liquid-glass" aria-label="Hoş geldiniz">
+        <div class="hero-copy">
+          <span class="eyebrow liquid-chip"><span class="mini-glow"></span> DİLEKÇİLER SOFTWARE <span aria-hidden="true">✳</span></span>
+          <h1>İyi fikirler.<br><em>Gerçek yazılımlar.</em></h1>
+          <p>Geliştirdiğim araçların ve yeni sürümlerin buluştuğu dijital stüdyo.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="bubble bubble-back"></div><div class="bubble bubble-front"><span>✦</span></div><div class="hero-sheen"></div>
+        </div>
+        <div class="hero-stat"><strong>{{ '%02d'|format(projects|length) }}</strong><span>PROJE<br>KOLEKSİYONU</span></div>
+      </section>
+
+      <main class="workspace liquid-glass" id="workspace" aria-label="Yazılım stüdyosu">
+        <div class="panel-track" id="panel-track">
+          <section class="panel panel-catalog" aria-label="Yazılım koleksiyonu" id="catalog-panel">
+            <div class="section-head">
+              <div class="section-title"><span class="kicker">✳ KOLEKSİYONU KEŞFET</span><div class="title-line"><h2>Uygulama koleksiyonu</h2><span class="count-pill liquid-chip" id="total-count">{{ projects|length }} yazılım</span></div></div>
+              <div class="head-actions"><div class="segment liquid-chip" role="group" aria-label="Panel değiştir"><button class="segment-btn is-active" data-switch="catalog" type="button">Koleksiyon</button><button class="segment-btn" data-switch="studio" type="button">Stüdyo</button></div><div class="arrows"><button class="round-arrow liquid-button" data-prev type="button" aria-label="Önceki panel">‹</button><button class="round-arrow liquid-button" data-next type="button" aria-label="Sonraki panel">›</button></div></div>
+            </div>
+            <div class="filters">
+              <div class="search-wrap liquid-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" placeholder="Yazılım ara..." id="search" aria-label="Yazılım ara" autocomplete="off"><button type="button" class="clear-search" id="clear-search" hidden aria-label="Aramayı temizle">×</button></div>
+              <div class="categories" id="categories" role="group" aria-label="Kategori filtreleri">
+                {% for cat in categories %}<button type="button" class="category liquid-chip {{ 'active' if cat == 'Tümü' else '' }}" data-category="{{ cat }}" aria-pressed="{{ 'true' if cat == 'Tümü' else 'false' }}">{{ cat }}</button>{% endfor %}
+              </div>
+            </div>
+            <div class="collection-scroll" id="collection-scroll">
+              <div class="project-grid" id="project-grid">
+                {% for project in projects %}
+                <button type="button" class="project-card liquid-glass" data-slug="{{ project.slug }}" data-category="{{ project.category }}" data-search="{{ (project.name ~ ' ' ~ project.description ~ ' ' ~ project.category)|lower }}" aria-label="{{ project.name }} ayrıntılarını aç">
+                  <span class="project-icon icon-{{ project.category|replace(' ', '-')|lower|replace('â','a')|replace('ı','i')|replace('ü','u')|replace('ğ','g')|replace('ş','s')|replace('ö','o')|replace('ç','c') }}" aria-hidden="true">{{ project.icon }}</span>
+                  <span class="project-main"><span class="project-type">{{ project.category|upper }}</span><strong>{{ project.name }}</strong><span class="project-desc">{{ project.description }}</span></span>
+                  <span class="card-right"><span class="card-label">{{ 'SÜRÜM VAR' if project.has_release else project.platform }}</span><span class="card-open liquid-button" aria-hidden="true">→</span></span>
+                </button>
+                {% endfor %}
+                <button type="button" class="utility-card liquid-glass" id="studio-card" aria-label="Stüdyo panelini aç">
+                  <span class="utility-glyph">✧</span><span class="utility-copy"><span class="project-type">STÜDYO</span><strong>Stüdyoyu keşfet</strong><small>Projelerin arkasındaki fikirler</small></span><span class="card-open liquid-button" aria-hidden="true">→</span>
+                </button>
+                <button type="button" class="utility-card liquid-glass" id="share-card" aria-label="Site bağlantısını kopyala">
+                  <span class="utility-glyph">↗</span><span class="utility-copy"><span class="project-type">PAYLAŞ</span><strong>Siteyi paylaş</strong><small>Bu koleksiyonu arkadaşına gönder</small></span><span class="card-open liquid-button" aria-hidden="true">→</span>
+                </button>
+              </div>
+              <div class="empty-state" id="empty-state" hidden><span class="empty-icon">⌕</span><h3>Aradığın projeyi bulamadık.</h3><p>Başka bir kelime veya kategori dene.</p><button id="reset-filters" class="pill-button liquid-button" type="button">Filtreleri temizle</button></div>
+            </div>
+            <div class="panel-bottom"><div class="hint"><span class="hint-icon">⇄</span> PANELLER ARASINDA GEZİN</div><div class="pagination"><button type="button" class="page-dot on liquid-button" data-switch="catalog" aria-label="Koleksiyon paneline git"></button><button type="button" class="page-dot liquid-button" data-switch="studio" aria-label="Stüdyo paneline git"></button></div><span class="page-current" id="page-current">01 / 02</span></div>
+          </section>
+
+          <section class="panel panel-studio" aria-label="Stüdyo hakkında" id="studio-panel" inert>
+            <div class="section-head"><div class="section-title"><span class="kicker">✳ BAĞIMSIZ GELİŞTİRME</span><div class="title-line"><h2>Stüdyonun içinden</h2><span class="count-pill liquid-chip">Hakkında</span></div></div><div class="head-actions"><div class="segment liquid-chip" role="group" aria-label="Panel değiştir"><button class="segment-btn" data-switch="catalog" type="button">Koleksiyon</button><button class="segment-btn is-active" data-switch="studio" type="button">Stüdyo</button></div><div class="arrows"><button class="round-arrow liquid-button" data-prev type="button" aria-label="Önceki panel">‹</button><button class="round-arrow liquid-button" data-next type="button" aria-label="Sonraki panel">›</button></div></div></div>
+            <div class="studio-grid">
+              <article class="studio-feature liquid-glass"><span class="feature-icon">✦</span><span class="kicker">BİR STÜDYO, BİRDEN ÇOK FİKİR</span><h3>Ürettiklerim, tek bir yerde.</h3><p>Yapay zekâ, eğitim, ofis, sistem ve adliye araçlarını bu koleksiyonda bir araya getiriyorum. Hazır olan yazılımların dosya.co indirme bağlantılarına buradan ulaşabilirsin.</p><button class="pill-button liquid-button" data-switch="catalog" type="button">Yazılımları keşfet <span>↗</span></button></article>
+              <article class="studio-tile liquid-glass"><span class="tile-symbol">↓</span><h3>Doğrudan indirme</h3><p>Yazılımların EXE, ZIP veya APK sürümleri için dosya.co indirme bağlantıları. Üyelik gerekmez.</p></article>
+              <article class="studio-tile liquid-glass"><span class="tile-symbol">◈</span><h3>Kapalı kaynak</h3><p>Uygulamaların kaynak kodu değil, geliştirici tarafından hazırlanmış dağıtım dosyaları sunulur.</p></article>
+              <article class="studio-tile liquid-glass"><span class="tile-symbol">↻</span><h3>Sürüm geçmişi</h3><p>Her yazılımın detay penceresinde varsa yayınlanan sürümleri ve değişiklik notlarını görebilirsin.</p></article>
+              <article class="studio-tile liquid-glass"><span class="tile-symbol">◇</span><h3>Yeni projeler</h3><p>Stüdyo genişledikçe yeni araçlar kataloğa eklenir. Henüz yayınlanmayanlarda indirme bağlantısı bulunmaz.</p></article>
+            </div>
+            <div class="panel-bottom"><div class="hint"><span class="hint-icon">⇄</span> KOLEKSİYONA DÖN</div><div class="pagination"><button type="button" class="page-dot liquid-button" data-switch="catalog" aria-label="Koleksiyon paneline git"></button><button type="button" class="page-dot on liquid-button" data-switch="studio" aria-label="Stüdyo paneline git"></button></div><span class="page-current">02 / 02</span></div>
+          </section>
+        </div>
+      </main>
+      <footer class="footer"><span>© 2026 DİLEKÇİLER SOFTWARE</span><span>DESIGNED TO FEEL DIFFERENT ✳</span></footer>
+    </div>
+  </div>
+
+  <dialog id="project-dialog" class="details-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-contents liquid-glass"><div class="dialog-top"><span class="kicker" id="dialog-category">PROJE</span><button class="modal-close liquid-button" type="button" id="close-dialog" aria-label="Detayları kapat">×</button></div>
+      <div class="dialog-hero"><span class="dialog-icon" id="dialog-icon">✦</span><div><h2 id="dialog-title"></h2><p id="dialog-platform"></p></div></div>
+      <div id="dialog-cover" class="dialog-cover" hidden><img id="cover-image" alt="Yazılım ekran görüntüsü"></div>
+      <p id="dialog-description" class="dialog-description"></p>
+      <div class="release-head"><h3>Yayınlanan sürümler</h3><span class="release-count" id="release-count"></span></div>
+      <div class="release-list" id="release-list"></div>
+      <div class="dialog-actions"><button type="button" class="pill-button liquid-button" id="copy-project-link">Bağlantıyı kopyala <span>↗</span></button><button type="button" class="pill-button primary liquid-button" id="dialog-done">Kapat</button></div>
+    </div>
+  </dialog>
+  <div class="toast liquid-glass" id="toast" role="status" aria-live="polite"></div>
+  <script type="application/json" id="project-data">{{ projects|tojson }}</script>
+</body>
+</html>

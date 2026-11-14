@@ -4,7 +4,7 @@ Kullanıcının yüklediği **di-software 27.zip** sürümünün 3 yazılımlı 
 
 ## Siteyi çalıştırma
 
-Windows'ta `BASLAT.bat` dosyasını aç. Python 3 kurulu olmalı, Flask kurulu değilse BAT dosyası `requirements.txt` üzerinden yükler.
+Windows'ta `BASLAT.bat` dosyasını aç. Python kurulu olmalı, Flask kurulu değilse BAT dosyası `requirements.txt` üzerinden yükler.
 
 Komutla çalıştırmak istersen:
 
